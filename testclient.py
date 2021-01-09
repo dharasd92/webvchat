@@ -1,10 +1,8 @@
 from client import Client
 from threading import Thread
 import time
-c1=Client("tim")
-c2=Client("joe")
-
-
+name=input('To Start messaging, enter your name :')
+c1=Client(name)
 
 def update_message():
     mssg=[]
@@ -21,19 +19,12 @@ def update_message():
 
 Thread(target=update_message).start()
 
-c1.send_message("hi")
-time.sleep(5)
-c2.send_message("hello")
-time.sleep(5)
-c1.send_message("Whatsup")
-time.sleep(5)
-
-c2.send_message("nothing mucgh ")
-#time.sleep(3)
-time.sleep(5)
-c1.send_message("boring")
-time.sleep(5)
-c1.disconnect()
-#time.sleep(3)
-time.sleep(2)
-c2.disconnect()
+mssg=input("Enter your message\n")
+run=True
+while(run):
+    if(mssg=='Exit' or mssg=='exit'):
+        run=False
+        c1.disconnect()
+    else:
+        c1.send_message(mssg)
+        mssg=input()
